@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ukoha Noble — Computer Science Student</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #FAFAF8;
+    --panel: #FFFFFF;
+    --ink: #1B1D1B;
+    --ink-dim: #6B6E68;
+    --line: #E6E5DF;
+    --accent: #1F5C4E;
+    --accent-soft: #E7EFEA;
+    --radius: 6px;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior: smooth; }
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; scroll-behavior:auto !important; }
+  }
+  a{ color: inherit; }
+  ::selection{ background: var(--accent-soft); color: var(--accent); }
+  h1,h2,h3{ font-family:'Fraunces', serif; font-weight:500; color: var(--ink); }
+  .wrap{ max-width: 780px; margin:0 auto; padding: 0 24px; }
+  :focus-visible{ outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* header */
+  header.top{ border-bottom: 1px solid var(--line); }
+  header.top .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 22px 24px;
+  }
+  .brand{ font-family:'Fraunces', serif; font-weight:500; font-size: 17px; letter-spacing: -0.01em; }
+  nav{ display:flex; gap: 28px; }
+  nav a{
+    text-decoration:none; font-size: 14px; color: var(--ink-dim);
+    transition: color .15s ease;
+  }
+  nav a:hover{ color: var(--accent); }
+
+  /* hero */
+  .hero{ padding: 96px 0 80px; }
+  .eyebrow{
+    display:inline-block; font-size: 13px; color: var(--accent);
+    letter-spacing: .06em; text-transform: uppercase; margin-bottom: 22px;
+    padding: 5px 12px; background: var(--accent-soft); border-radius: 100px;
+  }
+  h1{
+    font-size: clamp(34px, 5.5vw, 52px); line-height: 1.12; letter-spacing: -0.01em;
+    max-width: 14ch;
+  }
+  h1 em{
+    font-style: italic; color: var(--accent);
+  }
+  .underline{
+    display:block; width: 0; height: 2px; background: var(--accent);
+    margin-top: 6px; animation: draw 1.1s ease forwards .5s;
+  }
+  @keyframes draw{ to{ width: 84px; } }
+  .lede{
+    margin-top: 26px; max-width: 46ch; color: var(--ink-dim); font-size: 17px;
+  }
+  .hero-actions{ margin-top: 34px; display:flex; gap: 14px; flex-wrap: wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 12px 20px; border-radius: var(--radius); font-size: 14px;
+    text-decoration:none; transition: transform .15s ease, background .15s ease;
+  }
+  .btn-primary{ background: var(--accent); color: #fff; }
+  .btn-primary:hover{ transform: translateY(-1px); background:#194a3f; }
+  .btn-ghost{ border: 1px solid var(--line); color: var(--ink); }
+  .btn-ghost:hover{ border-color: var(--accent); color: var(--accent); }
+
+  section{ padding: 64px 0; border-top: 1px solid var(--line); }
+  .kicker{ font-size: 13px; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; margin-bottom: 10px; }
+  h2{ font-size: 26px; margin-bottom: 16px; }
+  .section-lede{ color: var(--ink-dim); max-width: 56ch; margin-bottom: 34px; }
+
+  /* skills */
+  .skills-grid{
+    display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+    gap: 18px;
+  }
+  .skill{
+    background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px;
+  }
+  .skill h3{ font-size: 16px; margin-bottom: 6px; }
+  .skill p{ font-size: 14px; color: var(--ink-dim); }
+
+  /* approach flow — real 3-step process, so sequence markers are earned */
+  .flow{ margin-top: 44px; display:flex; flex-direction:column; gap:0; }
+  .flow-step{ display:flex; gap: 20px; padding: 20px 0; position:relative; }
+  .flow-step:not(:last-child)::after{
+    content:""; position:absolute; left: 13px; top: 44px; bottom: -8px;
+    width: 1px; background: var(--line);
+  }
+  .flow-dot{
+    flex: none; width: 27px; height: 27px; border-radius: 50%;
+    border: 1px solid var(--accent); color: var(--accent);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 12px; font-weight: 600; background: var(--bg);
+  }
+  .flow-text h3{ font-size: 15px; margin-bottom: 4px; }
+  .flow-text p{ font-size: 14px; color: var(--ink-dim); max-width: 52ch; }
+
+  /* journey */
+  .journey-row{
+    display:flex; justify-content:space-between; gap: 16px;
+    padding: 14px 0; border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .journey-row:last-child{ border-bottom:none; }
+  .journey-row .k{ color: var(--ink-dim); min-width: 120px; }
+
+  /* connect */
+  .links{ display:flex; flex-direction:column; gap: 10px; margin-top: 8px; }
+  .link-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding: 16px 18px; background: var(--panel); border: 1px solid var(--line);
+    border-radius: var(--radius); text-decoration:none; color: var(--ink);
+    transition: border-color .15s ease, transform .15s ease;
+  }
+  .link-row:hover{ border-color: var(--accent); transform: translateX(2px); }
+  .link-row .plat{ font-weight: 500; }
+  .link-row .arrow{ color: var(--ink-dim); }
+
+  footer{
+    padding: 32px 0 56px; color: var(--ink-dim); font-size: 13px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+
+  @media (max-width: 560px){
+    nav{ gap: 16px; }
+    .hero{ padding: 64px 0 56px; }
+    section{ padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Ukoha Noble</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#journey">Journey</a>
+      <a href="#connect">Connect</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero" id="about">
+    <span class="eyebrow">Computer Science Student</span>
+    <h1>Still learning, but I like solving problems the <em>right</em> way.<span class="underline"></span></h1>
+    <p class="lede">I'm Ukoha Noble — a comp sci student figuring things out one project at a time. I'm more into understanding why something breaks than just patching it and moving on.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#skills">How I think</a>
+      <a class="btn btn-ghost" href="#connect">Say hi</a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="kicker">Capabilities</div>
+    <h2>What I'm working with</h2>
+    <p class="section-lede">I'm still early in my degree, so this list will keep growing. Right now I'm building a base in a few languages and systems, and honestly working just as hard on how I approach problems.</p>
+    <div class="skills-grid">
+      <div class="skill"><h3>Languages</h3><p>Python, C, JavaScript</p></div>
+      <div class="skill"><h3>Systems</h3><p>Linux, networking basics, PC hardware</p></div>
+      <div class="skill"><h3>Currently studying</h3><p>Cybersecurity fundamentals</p></div>
+      <div class="skill"><h3>Strength</h3><p>I don't panic when something breaks</p></div>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-dot">1</div>
+        <div class="flow-text"><h3>Figure out what's actually wrong</h3><p>Before I touch any code, I break the problem down until I can see exactly where it's failing.</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot">2</div>
+        <div class="flow-text"><h3>Test the small stuff first</h3><p>I check each piece on its own, so I actually know what's working before I build on top of it.</p></div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-dot">3</div>
+        <div class="flow-text"><h3>Build back up</h3><p>Once I trust the foundation, I put it all back together on purpose, not by guessing.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="journey">
+    <div class="kicker">Building in public</div>
+    <h2>The journey so far</h2>
+    <p class="section-lede">I'm sharing the real process — CS classes, small projects, and a bit of affiliate marketing on the side — starting from literally nothing.</p>
+    <div class="journey-row"><span class="k">Focus</span><span>CS fundamentals + hands-on projects</span></div>
+    <div class="journey-row"><span class="k">Content</span><span>Posting what I'm learning as I go</span></div>
+    <div class="journey-row"><span class="k">Side project</span><span>A bit of affiliate marketing, kept honest</span></div>
+  </section>
+
+  <section id="connect">
+    <div class="kicker">Get in touch</div>
+    <h2>Find me here</h2>
+    <p class="section-lede">Placeholder links for now — I'll swap in the real ones when I'm ready.</p>
+    <div class="links">
+      <a class="link-row" href="https://www.facebook.com/ukohanobl3/" aria-label="Facebook"><span class="plat">Facebook</span><span class="arrow">→</span></a>
+      <a class="link-row" href="https://www.instagram.com/ukohanoble1" aria-label="Instagram"><span class="plat">Instagram</span><span class="arrow">→</span></a>
+      <a class="link-row" href="https://www.tiktok.com/@ukohanoble1" aria-label="TikTok"><span class="plat">TikTok</span><span class="arrow">→</span></a>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div>© <span id="year"></span> Ukoha Noble</div>
+  <div>Comp sci student, figuring it out</div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
